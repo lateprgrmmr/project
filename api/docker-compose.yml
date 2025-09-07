@@ -1,0 +1,18 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: postgres_db
+    ports:
+      - '5454:5432'
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_LOGGING=all
+    volumes:
+      - ./src/database/schema.sql:/docker-entrypoint-initdb.d/1_schema.sql
+      # - ./src/database/staticData.sql:/docker-entrypoint-initdb.d/2_staticData.sql
+      # - ./src/database/scripts/seed.sql:/docker-entrypoint-initdb.d/3_seed.sql
+      # - postgres_data:/var/lib/postgresql/data
+volumes:
+  postgres_data:
