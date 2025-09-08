@@ -3,7 +3,7 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import { connectDb } from "./database/connection";
 
-// import ingredientsRouter from "./routes/ingredients/index";
+import ingredientRouter from "./routes/ingredient/index";
 // import recipeRouter from "./routes/recipe/index";
 
 const APP_PORT = process.env.APP_PORT || 5001;
@@ -13,8 +13,8 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-// app.use("/ingredients", ingredientsRouter);
-// app.use("/recipes", recipeRouter);
+app.use("/ingredient", ingredientRouter);
+// app.use("/recipe", recipeRouter);
 
 const startServer = async () => {
   const db = await connectDb();
